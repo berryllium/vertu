@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.catalog>.flex:hover .kv1 {
+.catalog>.flex img:hover .kv1 {
   display: flex;
 }
 
