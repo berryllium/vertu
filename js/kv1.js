@@ -66,7 +66,7 @@ $('.kv1__text').click((event) => {
         <li>Сапфировое стекло (фирменный оттенок синевы)</li>
         <li>Рубиновая подсветка клавиатуры</li>
       </ul>
-      <input type="checkbox" name="case${id}" id="${id}">
+      <input type="checkbox" name="case${id}" id="case${id}">
       <label for="case${id}">Добавить кожаный чехол за 1900р</label>
       <div class="bottom">
         <div class="price">
