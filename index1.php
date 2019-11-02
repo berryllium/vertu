@@ -6,7 +6,6 @@ $model = 'не указана';
 if (isset($_POST['model'])) {$model = $_POST['model'];}
 /* Сюда впишите свою эл. почту */
  $address = "mrc-remont@mail.ru";
- //$address = "venafed@mail.ru";
 
 
 /* А здесь прописывается текст сообщения, \n - перенос строки */
@@ -16,7 +15,8 @@ if (isset($_POST['model'])) {$model = $_POST['model'];}
 $sub='Заявка Vertu'; //сабж
 $email='From: info@finlandvertu.ru'; // от кого
 // $send = mail ($address,$sub,$mes,"Content-type:text/plain; charset = utf-8\r\nFrom:$email");
- $send = mail ($address,$sub,$mes, $email);
+$header = "Content-type:text/plain; charset = utf-8\r\nFrom:$email";
+ $send = mail ($address,$sub,$mes,$header);
 
 
 ini_set('short_open_tag', 'On');
