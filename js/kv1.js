@@ -8,15 +8,21 @@ arr = document.querySelectorAll('.catalog>.flex')
 for (let i = 0; i < arr.length; i++) {
   let element = arr[i]
   let phone_name = ''
+  let phone_price = ''
   if (element.querySelector('.description_title_one')) {
     phone_name = element.querySelector('.description_title_one').innerText
-    console.log(phone_name)
+  }
+  if (element.querySelector('.cens1')) {
+    phone_price = element.querySelector('.cens1').innerText.match(/₽.*$/)[0].slice(1)
   }
   
   // шаблон затемненного блока
   let kv1 = ` <div class="kv1 hidden">
   <div class="kv1__shadow"></div>
-  <div class="kv1__text" data-id = "${i + 1}" data-name="${phone_name}">Быстый просмотр</div>
+  <div class="kv1__text" 
+    data-id = "${i + 1}" 
+    data-name="${phone_name}"
+    data-price="${phone_price}">Быстый просмотр</div>
   </div>`
 
   element.insertAdjacentHTML('beforeend', kv1);
@@ -39,7 +45,9 @@ for (let i = 0; i < arr.length; i++) {
 
 // по клику БЫСТРЫЙ ПРОСМОТР
 $('.kv1__text').click((event) => {
+  const id = event.target.dataset.id
   const name = event.target.dataset.name
+  const price = event.target.dataset.price
   let kv2 = `
 	<div class="kv2">
   <div class="bg"></div>
@@ -61,11 +69,11 @@ $('.kv1__text').click((event) => {
         <li>Сапфировое стекло (фирменный оттенок синевы)</li>
         <li>Рубиновая подсветка клавиатуры</li>
       </ul>
-      <input type="checkbox" name="case1" id="case1">
-      <label for="case1">Добавить кожаный чехол за 1900р</label>
+      <input type="checkbox" name="case${id}" id="${id}">
+      <label for="case${id}">Добавить кожаный чехол за 1900р</label>
       <div class="bottom">
         <div class="price">
-          10 900₽
+          ${price}
         </div>
         <a href="#" class="order">ОФОРМИТЬ ЗАКАЗ</a>
         <div class="space"></div>
