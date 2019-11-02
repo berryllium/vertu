@@ -29,11 +29,16 @@ for (let i = 0; i < preview_phone; i++) {
 
   element.insertAdjacentHTML('beforeend', kv1);
   $(element).children('div:first').mouseover(() => {
-    const kv1 = $(element).children('.kv1')
-    kv1.removeClass('hidden')
-    kv1.mouseleave(() => {
-      kv1.addClass('hidden')
-    })
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      return
+    } else {
+      const kv1 = $(element).children('.kv1')
+      kv1.removeClass('hidden')
+      kv1.mouseleave(() => {
+        kv1.addClass('hidden')
+      })
+    }
+
   })
 }
 
@@ -90,7 +95,7 @@ $('.kv1__text').click((event) => {
       $('.kv2').remove()
     }
 
-    
+
     if (event.target.classList.contains('label')) {
       let check = $(event.target).siblings('input').attr('checked')
       let price = $(event.target).parent().children('.bottom').children('.price')

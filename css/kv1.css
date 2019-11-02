@@ -248,3 +248,9 @@
   border-bottom : 1px solid black;
   margin-top    : 5px;
 }
+
+@media screen and (max-width: 1000px) {
+  .kv1, .kv2 {
+   display: none!important;
+  }
+}
