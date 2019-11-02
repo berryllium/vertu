@@ -15,7 +15,7 @@ for (let i = 0; i < preview_phone; i++) {
     phone_name = element.querySelector('.description_title_one').innerText
   }
   if (element.querySelector('.cens1')) {
-    phone_price = element.querySelector('.cens1').innerText.match(/₽.*$/)[0].slice(1)
+    phone_price = element.querySelector('.cens1').innerText.match(/₽.*$/)[0].slice(1).replace(/\s/g, '')
   }
 
   // шаблон затемненного блока
@@ -67,7 +67,7 @@ $('.kv1__text').click((event) => {
         <li>Рубиновая подсветка клавиатуры</li>
       </ul>
       <input type="checkbox" name="case${id}" id="case${id}">
-      <label for="case${id}">Добавить кожаный чехол за 1900р</label>
+      <label class = "label" for="case${id}">Добавить кожаный чехол за 1900р</label>
       <div class="bottom">
         <div class="price">
           ${price}
@@ -84,14 +84,25 @@ $('.kv1__text').click((event) => {
   // выводим модальное окно
   document.querySelector('body').insertAdjacentHTML('beforeend', kv2)
 
-  //закрытие модального окна
+  //закрытие модального окна и галочка с чехлом
   $('.kv2').on('click', (event) => {
     if (event.target.classList.contains('bg')) {
       $('.kv2').remove()
     }
+
+    if (event.target.classList.contains('label')) {
+      let check = $(event.target).siblings('input').attr('checked')
+      let price = $(event.target).parent().children('.bottom').children('.price')
+      current = price.text().replace(/\s/g, '')
+      if (check)  current = parseInt(current) - 1900
+      if (!check) current = parseInt(current) + 1900
+      $(price).text(current + '₽') 
+    }
+
   })
 
-  $('.kv2').removeClass('hidden')
+
+
   // активируем слайдер
   $(document).ready(function () {
     $('.slider').slick({
