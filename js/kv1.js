@@ -10,8 +10,8 @@ for (let i = 0; i < arr.length; i++) {
   let element = arr[i]
   let phone_id = i + 1
   let phone_type = 'mobile'
-  if (phone_id > 22 && phone_id < 28) phone_type = 'ceramic'
-  if (phone_id > 28 && phone_id < 38) phone_type = 'smart'
+  if (phone_id > 22 && phone_id <= 28) phone_type = 'ceramic'
+  if (phone_id > 28 && phone_id <= 38) phone_type = 'smart'
   if (phone_id > 38) phone_type = 'smart2'
   let phone_model = ''
   let phone_price = ''
@@ -56,20 +56,52 @@ $('.kv1__text').click((event) => {
   const type = event.target.dataset.type
   let checknone = false
   let path = id
+  let list = `
+              <li>Натуральная кожа</li>
+              <li>Стальной корпус</li>
+              <li>Оригинальное ПО (иконки, полифония)</li>
+              <li>Сапфировое стекло (фирменный оттенок синевы)</li>
+              <li>Рубиновая подсветка клавиатуры</li>
+              `
+
   let pathgl = 'more' + path
   if (type == 'ceramic') {
     path = '-ceramic' + (id-22)
     pathgl = path.slice(1)
+    list = `
+              <li>Натуральная кожа</li>
+              <li>Керамический корпус</li>
+              <li>Оригинальное ПО (иконки, полифония)</li>
+              <li>Сапфировое стекло (фирменный оттенок синевы)</li>
+              <li>Рубиновая подсветка клавиатуры</li>
+              `
+              
   }
   if (type == 'smart')  {
     path = '-smart' + (id-28)
     pathgl = path.slice(1)
     checknone = true
+    list = `
+              <li>Натуральная кожа</li>
+              <li>Стальной корпус</li>
+              <li>Оригинальное ПО (иконки, полифония)</li>
+              <li>Сапфировое стекло (фирменный оттенок синевы)</li>
+              <li>Рубиновая подсветка клавиатуры</li>
+              `
+              
   }
   if (type == 'smart2')  {
     path = '-smart7' + (id-38)
     pathgl = path.slice(1)
     checknone = true
+    list = `
+              <li>Натуральная кожа</li>
+              <li>Стальной корпус</li>
+              <li>Оригинальное ПО (иконки, полифония)</li>
+              <li>Сапфировое стекло (фирменный оттенок синевы)</li>
+              <li>Рубиновая подсветка клавиатуры</li>
+              `
+              
   }
 
   let kv2 = `
@@ -90,11 +122,7 @@ $('.kv1__text').click((event) => {
       <h3>${model}</h3>
       <div class="line"></div>
       <ul>
-        <li>Натуральная кожа</li>
-        <li>Стальной корпус</li>
-        <li>Оригинальное ПО (иконки, полифония)</li>
-        <li>Сапфировое стекло (фирменный оттенок синевы)</li>
-        <li>Рубиновая подсветка клавиатуры</li>
+        ${list}
       </ul>
       <input type="checkbox" name="case${id}" id="case${id}">
       <label class = "label" for="case${id}" ${(checknone) ? 'hidden' : ''}>Добавить кожаный чехол за 1900р</label>
