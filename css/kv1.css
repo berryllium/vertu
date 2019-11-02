@@ -1,5 +1,5 @@
 .hidden {
-  visibility: hidden!important;
+  visibility: hidden !important;
 }
 
 .catalog>.flex {
@@ -58,6 +58,7 @@
   width           : 100%;
   height          : 100%;
   background-color: black;
+  opacity         : .9;
 }
 
 .kv2>.content {
@@ -75,8 +76,8 @@
 }
 
 .kv2 .slider {
-  width           : 100%;
-  height          : 100%;
+  width : 100%;
+  height: 100%;
 }
 
 .kv2 .slick-prev,
@@ -120,16 +121,16 @@
 }
 
 .kv2 .s-item {
-  width      : 500px;
-  height     : 450px;
-  display    : flex;
+  width          : 500px;
+  height         : 450px;
+  display        : flex;
   justify-content: center;
-  align-items: center;
+  align-items    : center;
 }
 
 .kv2 .s-item img {
-  display: block;
-  height: 100%;
+  display  : block;
+  height   : 100%;
   max-width: 100%;
 }
 
