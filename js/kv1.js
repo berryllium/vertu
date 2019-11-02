@@ -7,10 +7,16 @@ arr = document.querySelectorAll('.catalog>.flex')
 // добавляем блоки и показываем при наведении мышки
 for (let i = 0; i < arr.length; i++) {
   let element = arr[i]
+  let phone_name = ''
+  if (element.querySelector('.description_title_one')) {
+    phone_name = element.querySelector('.description_title_one').innerText
+    console.log(phone_name)
+  }
+  
   // шаблон затемненного блока
   let kv1 = ` <div class="kv1 hidden">
   <div class="kv1__shadow"></div>
-  <div class="kv1__text" data-id = "${i + 1}">Быстый просмотр</div>
+  <div class="kv1__text" data-id = "${i + 1}" data-name="${phone_name}">Быстый просмотр</div>
   </div>`
 
   element.insertAdjacentHTML('beforeend', kv1);
@@ -18,7 +24,6 @@ for (let i = 0; i < arr.length; i++) {
     const kv1 = $(element).children('.kv1')
     kv1.removeClass('hidden')
     kv1.mouseleave(() => {
-      console.log('out')
       kv1.addClass('hidden')
     })
   })
@@ -34,7 +39,7 @@ for (let i = 0; i < arr.length; i++) {
 
 // по клику БЫСТРЫЙ ПРОСМОТР
 $('.kv1__text').click((event) => {
-  const name = event.target.dataset.id
+  const name = event.target.dataset.name
   let kv2 = `
 	<div class="kv2">
   <div class="bg"></div>
@@ -47,7 +52,7 @@ $('.kv1__text').click((event) => {
       </div>
     </div>
     <div class="right">
-      <h3>${name}VERTU DESIGN<br>SIGNATURE SILVER</h3>
+      <h3>${name}</h3>
       <div class="line"></div>
       <ul>
         <li>Натуральная кожа</li>
@@ -76,7 +81,6 @@ $('.kv1__text').click((event) => {
 
   //закрытие модального окна
   $('.kv2').on('click', (event) => {
-    console.log(event.target)
     if (event.target.classList.contains('bg')) {
       $('.kv2').remove()
     }
