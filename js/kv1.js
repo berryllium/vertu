@@ -6,11 +6,13 @@ arr = document.querySelectorAll('.catalog>.flex')
 preview_phone = 28//количество смартфонов, на которыйх есть быстрый прсомотр
 
 // добавляем блоки и показываем при наведении мышки
-for (let i = 0; i < preview_phone; i++) {
+for (let i = 0; i < arr.length; i++) {
   let element = arr[i]
   let phone_id = i + 1
   let phone_type = 'mobile'
-  if (phone_id > 22) phone_type = 'ceramic'
+  if (phone_id > 22 && phone_id < 28) phone_type = 'ceramic'
+  if (phone_id > 28 && phone_id < 38) phone_type = 'smart'
+  if (phone_id > 38) phone_type = 'smart2'
   let phone_model = ''
   let phone_price = ''
   if (element.querySelector('.description_title_one')) {
@@ -53,7 +55,20 @@ $('.kv1__text').click((event) => {
   const price = event.target.dataset.price
   const type = event.target.dataset.type
   let path = id
-  if (type == 'ceramic') path = '-ceramic' + (id-22)
+  let pathgl = 'more' + path
+  if (type == 'ceramic') {
+    path = '-ceramic' + (id-22)
+    pathgl = path.slice(1)
+  }
+  if (type == 'smart')  {
+    path = '-smart' + (id-28)
+    pathgl = path.slice(1)
+  }
+  if (type == 'smart2')  {
+    path = '-smart7' + (id-38)
+    pathgl = path.slice(1)
+  }
+
   let kv2 = `
 	<div class="kv2">
   <div class="bg"></div>
@@ -64,7 +79,7 @@ $('.kv1__text').click((event) => {
         <div class = "s-item s-item1"><img src="img/more${path}_2.jpg" alt="photo_vertu"></div>
         <div class = "s-item s-item1"><img src="img/more${path}_3.jpg" alt="photo_vertu"></div>
         <div class = "s-item s-item1"><img src="img/more${path}_4.jpg" alt="photo_vertu"></div>
-        <div class = "s-item s-item1"><img src="img/${(type == 'ceramic') ? path.slice(1) : 'more'+path}_gl.png" alt="photo_vertu"></div>
+        <div class = "s-item s-item1"><img src="img/${pathgl}_gl.png" alt="photo_vertu"></div>
         
       </div>
     </div>
