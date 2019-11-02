@@ -955,6 +955,7 @@ input[type=checkbox]:checked~.faq_row {
 
 .form__popup2 {
     display: none;
+    z-index: 7;
 }
 
 .section_two>.container {

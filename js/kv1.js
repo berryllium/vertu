@@ -9,10 +9,10 @@ preview_phone = 22//количество смартфонов, на которы
 for (let i = 0; i < preview_phone; i++) {
   let element = arr[i]
   let phone_id = i + 1
-  let phone_name = ''
+  let phone_model = ''
   let phone_price = ''
   if (element.querySelector('.description_title_one')) {
-    phone_name = element.querySelector('.description_title_one').innerText
+    phone_model = element.querySelector('.description_title_one').innerText
   }
   if (element.querySelector('.cens1')) {
     phone_price = element.querySelector('.cens1').innerText.match(/₽.*$/)[0].slice(1).replace(/\s/g, '')
@@ -23,7 +23,7 @@ for (let i = 0; i < preview_phone; i++) {
   <div class="kv1__shadow"></div>
   <div class="kv1__text" 
     data-id = "${phone_id}" 
-    data-name="${phone_name}"
+    data-model="${phone_model}"
     data-price="${phone_price}">Быстый просмотр</div>
   </div>`
 
@@ -41,7 +41,7 @@ for (let i = 0; i < preview_phone; i++) {
 // по клику БЫСТРЫЙ ПРОСМОТР
 $('.kv1__text').click((event) => {
   const id = event.target.dataset.id
-  const name = event.target.dataset.name
+  const model = event.target.dataset.model
   const price = event.target.dataset.price
   let kv2 = `
 	<div class="kv2">
@@ -57,7 +57,7 @@ $('.kv1__text').click((event) => {
       </div>
     </div>
     <div class="right">
-      <h3>${name}</h3>
+      <h3>${model}</h3>
       <div class="line"></div>
       <ul>
         <li>Натуральная кожа</li>
@@ -72,7 +72,7 @@ $('.kv1__text').click((event) => {
         <div class="price">
           ${price}
         </div>
-        <a class="order">ОФОРМИТЬ ЗАКАЗ</a>
+        <a class="order order_preview">ОФОРМИТЬ ЗАКАЗ</a>
         <div class="space"></div>
         <a href="more${id}.html" class="more">см.подробнее</a>
       </div>
@@ -83,26 +83,36 @@ $('.kv1__text').click((event) => {
 `
   // выводим модальное окно
   document.querySelector('body').insertAdjacentHTML('beforeend', kv2)
-
+  $('kv1').remove()
   //закрытие модального окна и галочка с чехлом
   $('.kv2').on('click', (event) => {
     if (event.target.classList.contains('bg')) {
       $('.kv2').remove()
     }
 
+    
     if (event.target.classList.contains('label')) {
       let check = $(event.target).siblings('input').attr('checked')
       let price = $(event.target).parent().children('.bottom').children('.price')
       current = price.text().replace(/\s/g, '')
-      if (check)  current = parseInt(current) - 1900
+      if (check) current = parseInt(current) - 1900
       if (!check) current = parseInt(current) + 1900
-      $(price).text(current + '₽') 
+      $(price).text(current + '₽')
     }
 
+    // отправка заявки
+    if (event.target.classList.contains('order')) {
+      let check = $(event.target).parent().siblings('input').attr('checked')
+      let message = model
+      if (check) message += ' + КОЖАНЫЙ ЧЕХОЛ!'
+      $('input[name="model"]').remove()
+      $(`form`).append(`<input id="modelPhone" class="popup_window__input tac inp" type="text" name="model" value="${message}" hidden>`);
+      $('.form__popup2').addClass('fadeIn');
+      $('.form__popup2').css('display', 'inherit');
+      $('html').css('overflow-y', 'hidden');
+      $('.kv2').remove()
+    };
   })
-
-
-
   // активируем слайдер
   $(document).ready(function () {
     $('.slider').slick({
