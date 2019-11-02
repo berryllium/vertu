@@ -54,6 +54,7 @@ $('.kv1__text').click((event) => {
   const model = event.target.dataset.model
   const price = event.target.dataset.price
   const type = event.target.dataset.type
+  let checknone = false
   let path = id
   let pathgl = 'more' + path
   if (type == 'ceramic') {
@@ -63,10 +64,12 @@ $('.kv1__text').click((event) => {
   if (type == 'smart')  {
     path = '-smart' + (id-28)
     pathgl = path.slice(1)
+    checknone = true
   }
   if (type == 'smart2')  {
     path = '-smart7' + (id-38)
     pathgl = path.slice(1)
+    checknone = true
   }
 
   let kv2 = `
@@ -94,7 +97,7 @@ $('.kv1__text').click((event) => {
         <li>Рубиновая подсветка клавиатуры</li>
       </ul>
       <input type="checkbox" name="case${id}" id="case${id}">
-      <label class = "label" for="case${id}">Добавить кожаный чехол за 1900р</label>
+      <label class = "label" for="case${id}" ${(checknone) ? 'hidden' : ''}>Добавить кожаный чехол за 1900р</label>
       <div class="bottom">
         <div class="price">
           ${price}
