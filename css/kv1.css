@@ -1,8 +1,12 @@
+.hidden {
+  display: none!important;
+}
+
 .catalog>.flex {
   position: relative;
 }
 
-.catalog>.flex img:hover .kv1 {
+.catalog>.flex .div:first-child:hover .kv1 {
   display: flex;
 }
 
@@ -10,7 +14,7 @@
   position       : absolute;
   width          : 100%;
   height         : 100%;
-  display        : none;
+  display        : flex;
   justify-content: center;
   align-items    : center;
 }
