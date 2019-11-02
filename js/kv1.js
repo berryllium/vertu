@@ -3,12 +3,14 @@
 // выбираем все блоки с товарами на главноей
 arr = document.querySelectorAll('.catalog>.flex')
 
-preview_phone = 22//количество смартфонов, на которыйх есть быстрый прсомотр
+preview_phone = 28//количество смартфонов, на которыйх есть быстрый прсомотр
 
 // добавляем блоки и показываем при наведении мышки
 for (let i = 0; i < preview_phone; i++) {
   let element = arr[i]
   let phone_id = i + 1
+  let phone_type = 'mobile'
+  if (phone_id > 22) phone_type = 'ceramic'
   let phone_model = ''
   let phone_price = ''
   if (element.querySelector('.description_title_one')) {
@@ -24,6 +26,7 @@ for (let i = 0; i < preview_phone; i++) {
   <div class="kv1__text" 
     data-id = "${phone_id}" 
     data-model="${phone_model}"
+    data-type="${phone_type}"
     data-price="${phone_price}">Быстый просмотр</div>
   </div>`
 
@@ -48,17 +51,21 @@ $('.kv1__text').click((event) => {
   const id = event.target.dataset.id
   const model = event.target.dataset.model
   const price = event.target.dataset.price
+  const type = event.target.dataset.type
+  let path = id
+  if (type == 'ceramic') path = '-ceramic' + (id-22)
   let kv2 = `
 	<div class="kv2">
   <div class="bg"></div>
   <div class="content">
     <div class="left">
       <div class="slider">
-        <div class = "s-item s-item1"><img src="img/more${id}_1.jpg" alt="photo_vertu"></div>
-        <div class = "s-item s-item1"><img src="img/more${id}_2.jpg" alt="photo_vertu"></div>
-        <div class = "s-item s-item1"><img src="img/more${id}_3.jpg" alt="photo_vertu"></div>
-        <div class = "s-item s-item1"><img src="img/more${id}_4.jpg" alt="photo_vertu"></div>
-        <div class = "s-item s-item1"><img src="img/more${id}_gl.png" alt="photo_vertu"></div>
+        <div class = "s-item s-item1"><img src="img/more${path}_1.jpg" alt="photo_vertu"></div>
+        <div class = "s-item s-item1"><img src="img/more${path}_2.jpg" alt="photo_vertu"></div>
+        <div class = "s-item s-item1"><img src="img/more${path}_3.jpg" alt="photo_vertu"></div>
+        <div class = "s-item s-item1"><img src="img/more${path}_4.jpg" alt="photo_vertu"></div>
+        <div class = "s-item s-item1"><img src="img/${(type == 'ceramic') ? path.slice(1) : 'more'+path}_gl.png" alt="photo_vertu"></div>
+        
       </div>
     </div>
     <div class="right">
