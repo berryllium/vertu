@@ -3,10 +3,12 @@
 // выбираем все блоки с товарами на главноей
 arr = document.querySelectorAll('.catalog>.flex')
 
+preview_phone = 22//количество смартфонов, на которыйх есть быстрый прсомотр
 
 // добавляем блоки и показываем при наведении мышки
-for (let i = 0; i < arr.length; i++) {
+for (let i = 0; i < preview_phone; i++) {
   let element = arr[i]
+  let phone_id = i + 1
   let phone_name = ''
   let phone_price = ''
   if (element.querySelector('.description_title_one')) {
@@ -15,12 +17,12 @@ for (let i = 0; i < arr.length; i++) {
   if (element.querySelector('.cens1')) {
     phone_price = element.querySelector('.cens1').innerText.match(/₽.*$/)[0].slice(1)
   }
-  
+
   // шаблон затемненного блока
   let kv1 = ` <div class="kv1 hidden">
   <div class="kv1__shadow"></div>
   <div class="kv1__text" 
-    data-id = "${i + 1}" 
+    data-id = "${phone_id}" 
     data-name="${phone_name}"
     data-price="${phone_price}">Быстый просмотр</div>
   </div>`
@@ -35,13 +37,6 @@ for (let i = 0; i < arr.length; i++) {
   })
 }
 
-// слайдер
-// <div class = "s-item s-item1"><img src="img/more1_1.jpg" alt="1"></div>
-//           <div class = "s-item s-item2"><img src="img/more1_2.jpg" alt="2"></div>
-//           <div class = "s-item s-item3"><img src="img/more1_3.jpg" alt="3"></div>
-
-// создаем модальное окно со слайдером
-
 
 // по клику БЫСТРЫЙ ПРОСМОТР
 $('.kv1__text').click((event) => {
@@ -54,9 +49,11 @@ $('.kv1__text').click((event) => {
   <div class="content">
     <div class="left">
       <div class="slider">
-      <div class = "s-item s-item1"><img src="img/more1_1.jpg" alt="1"></div>
-      <div class = "s-item s-item1"><img src="img/more1_1.jpg" alt="1"></div>
-      
+        <div class = "s-item s-item1"><img src="img/more${id}_1.jpg" alt="photo_vertu"></div>
+        <div class = "s-item s-item1"><img src="img/more${id}_2.jpg" alt="photo_vertu"></div>
+        <div class = "s-item s-item1"><img src="img/more${id}_3.jpg" alt="photo_vertu"></div>
+        <div class = "s-item s-item1"><img src="img/more${id}_4.jpg" alt="photo_vertu"></div>
+        <div class = "s-item s-item1"><img src="img/more${id}_gl.png" alt="photo_vertu"></div>
       </div>
     </div>
     <div class="right">
@@ -75,9 +72,9 @@ $('.kv1__text').click((event) => {
         <div class="price">
           ${price}
         </div>
-        <a href="#" class="order">ОФОРМИТЬ ЗАКАЗ</a>
+        <a class="order">ОФОРМИТЬ ЗАКАЗ</a>
         <div class="space"></div>
-        <a href="more1.html" class="more">см.подробнее</a>
+        <a href="more${id}.html" class="more">см.подробнее</a>
       </div>
     </div>
   </div>
