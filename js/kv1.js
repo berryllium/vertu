@@ -18,6 +18,9 @@ for (let i = 0; i < arr.length; i++) {
   if (element.querySelector('.description_title_one')) {
     phone_model = element.querySelector('.description_title_one').innerText
   }
+  if (element.querySelector('.description_title_two')) {
+    phone_title2 = element.querySelector('.description_title_two').innerText
+  }
   if (element.querySelector('.cens1')) {
     phone_price = element.querySelector('.cens1').innerText.match(/₽.*$/)[0].slice(1).replace(/\s/g, '')
   }
@@ -28,6 +31,7 @@ for (let i = 0; i < arr.length; i++) {
   <div class="kv1__text" 
     data-id = "${phone_id}" 
     data-model="${phone_model}"
+    data-title2="${phone_title2}"
     data-type="${phone_type}"
     data-price="${phone_price}">Быстый просмотр</div>
   </div>`
@@ -52,6 +56,7 @@ for (let i = 0; i < arr.length; i++) {
 $('.kv1__text').click((event) => {
   const id = event.target.dataset.id
   const model = event.target.dataset.model
+  const title2 = event.target.dataset.title2
   const price = event.target.dataset.price
   const type = event.target.dataset.type
   let checknone = false
@@ -82,7 +87,8 @@ $('.kv1__text').click((event) => {
     pathgl = path.slice(1)
     checknone = true
     list = `
-              <li>Экран - 5" AMOLED</li>
+              
+              <li>${title2}\"</li>
               <li>Стальной корпус</li>
               <li>OS Android</li>
               <li>Сапфировое стекло (фирменный оттенок синевы)</li>
@@ -94,7 +100,8 @@ $('.kv1__text').click((event) => {
     pathgl = path.slice(1)
     checknone = true
     list = `
-              <li>Экран - 5" AMOLED</li>
+              
+              <li>${title2}\"</li>
               <li>Стальной корпус</li>
               <li>OS Android</li>
               <li>Сапфировое стекло (фирменный оттенок синевы)</li>
