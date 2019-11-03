@@ -61,6 +61,7 @@ $('.kv1__text').click((event) => {
   const type = event.target.dataset.type
   let checknone = false
   let path = id
+  let link = `more${id}.html`
   let list = `
               <li>Натуральная кожа</li>
               <li>Стальной корпус</li>
@@ -71,8 +72,9 @@ $('.kv1__text').click((event) => {
 
   let pathgl = 'more' + path
   if (type == 'ceramic') {
-    path = '-ceramic' + (id-22)
+    path = '-ceramic' + (id - 22)
     pathgl = path.slice(1)
+    link = `ceramic-more${(id - 22)}.html`
     list = `
               <li>Керамическая отделка</li>
               <li>Стальной корпус</li>
@@ -80,33 +82,37 @@ $('.kv1__text').click((event) => {
               <li>Сапфировое стекло (фирменный оттенок синевы)</li>
               <li>Рубиновая подсветка клавиатуры</li>
               `
-              
+
   }
-  if (type == 'smart')  {
-    path = '-smart' + (id-28)
+  if (type == 'smart') {
+    path = '-smart' + (id - 28)
     pathgl = path.slice(1)
+    link = `smartphone-more${(id - 28)}.html`
     checknone = true
     list = `
               
               <li>${title2}\"</li>
-              <li>Стальной корпус</li>
-              <li>OS Android</li>
-              <li>Сапфировое стекло (фирменный оттенок синевы)</li>
+              <li>Стальной корпус с титановым покрытием</li>
+              <li>Защита от СВЧ излучения</li>
+              <li>Объемные стереодинамика Hi-Fi</li>
+              <li>Натуральная кожа</li>
               `
-              
+
   }
-  if (type == 'smart2')  {
-    path = '-smart7' + (id-38)
+  if (type == 'smart2') {
+    path = '-smart7' + (id - 38)
     pathgl = path.slice(1)
+    link = `smartphone-more7${(id - 38)}.html`
     checknone = true
     list = `
-              
+                        
               <li>${title2}\"</li>
-              <li>Стальной корпус</li>
-              <li>OS Android</li>
-              <li>Сапфировое стекло (фирменный оттенок синевы)</li>
-              `
-              
+              <li>Стальной корпус с титановым покрытием</li>
+              <li>Защита от СВЧ излучения</li>
+              <li>Объемные стереодинамика Hi-Fi</li>
+              <li>Натуральная кожа</li>
+                        `
+
   }
 
   let kv2 = `
@@ -137,7 +143,7 @@ $('.kv1__text').click((event) => {
         </div>
         <a class="order order_preview">ОФОРМИТЬ ЗАКАЗ</a>
         <div class="space"></div>
-        <a href="more${id}.html" class="more">см.подробнее</a>
+        <a href="${link}" class="more">см.подробнее</a>
       </div>
     </div>
   </div>
